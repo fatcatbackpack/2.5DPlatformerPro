@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private float speed = 5.0f;
     [SerializeField]
     private float gravity = 2.0f;
+    [SerializeField]
+    private float _jump = 50.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +27,17 @@ public class PlayerController : MonoBehaviour
         
         if (_controller.isGrounded == true)
         {
-            Debug.Log("player is grounded");
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = _jump;
+            }
+
         }
         else
         {
             velocity.y -= gravity;
         }
-
-
+        
         _controller.Move(velocity * Time.deltaTime);
     }
 }
