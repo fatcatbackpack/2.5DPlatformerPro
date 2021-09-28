@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 5.0f;
     [SerializeField]
-    private float gravity = 2.0f;
+    private float gravity = 1.0f;
     [SerializeField]
     private float _jump = 50.0f;
+    private float _yVelocity;
+    [SerializeField]
+    private bool _canDoubleJump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +32,25 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                velocity.y = _jump;
+                _yVelocity = _jump;
+                _canDoubleJump = true;
             }
 
         }
         else
         {
-            velocity.y -= gravity;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if(_canDoubleJump == true)
+                {
+                    _yVelocity += _jump;
+                    _canDoubleJump = false;
+                }
+            }
+            _yVelocity -= gravity;
         }
+
+        velocity.y = _yVelocity;
         
         _controller.Move(velocity * Time.deltaTime);
     }
