@@ -17,7 +17,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (_switching == false)
@@ -38,4 +38,22 @@ public class MovingPlatform : MonoBehaviour
             _switching = true;
         }
     }
+
+    private void OnTriggerEnter(Collider enter)
+    {
+        if (enter.tag == "Player")
+        {
+            enter.transform.parent = this.transform;
+        }
+    }
+
+    private void OnTriggerExit(Collider exit)
+    {
+        if (exit.tag == "Player")
+        {
+            exit.transform.parent = null;
+        }
+    }
+
+
 }
