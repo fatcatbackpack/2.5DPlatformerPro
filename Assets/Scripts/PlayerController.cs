@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class PlayerController : MonoBehaviour
     private bool _canDoubleJump = false;
     [SerializeField]
     private int _playerCoins;
+
     private UIManager _uiManager;
+    [SerializeField]
+    private int _lives = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,8 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("UI manager is null");
         }
 
+        _uiManager.UpdateLivesDisplay(_lives);
+
         _playerCoins = 0;
     }
 
@@ -39,6 +45,8 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(HRZInput, 0, 0);
         Vector3 velocity = direction * speed;
         
+        
+
         if (_controller.isGrounded == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -71,5 +79,18 @@ public class PlayerController : MonoBehaviour
         _playerCoins++;
 
         _uiManager.UpdateCoinDisplay(_playerCoins);
+    }
+
+    public void Damage()
+    {
+        _lives--;
+
+        _uiManager.UpdateLivesDisplay(_lives);
+
+        if(_lives < 1)
+        {
+            SceneManager.LoadScene(0);
+        }
+        
     }
 }
