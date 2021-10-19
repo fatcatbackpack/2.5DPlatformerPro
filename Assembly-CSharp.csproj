@@ -53,13 +53,18 @@
     <UnityVersion>2020.3.7f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\CoinBehavior.cs" />
-    <Compile Include="Assets\Scripts\DeadZone.cs" />
+    <Compile Include="Assets\GameDevHQ\FileBase\Projects\Tutorials\Starter_Files\2_5D_Puzzle_Starter\Scripts\Player.cs" />
+    <Compile Include="Assets\GameDevHQ\FileBase\Projects\Tutorials\Starter_Files\2_5D_Puzzle_Starter\Scripts\MovingPlatform.cs" />
+    <Compile Include="Assets\GameDevHQ\FileBase\Projects\Tutorials\Starter_Files\2_5D_Puzzle_Starter\Scripts\UIManager.cs" />
+    <Compile Include="Assets\GameDevHQ\FileBase\Projects\Tutorials\Starter_Files\2_5D_Puzzle_Starter\Scripts\Coin.cs" />
+    <Compile Include="Assets\GameDevHQ\FileBase\Projects\Tutorials\Starter_Files\2_5D_Puzzle_Starter\Scripts\DeadZone.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\GameDevHQ\FileBase\Plugin\Filebase.dll" />
+     <None Include="Assets\GameDevHQ\FileBase\Plugin\README.txt" />
+     <None Include="Assets\GameDevHQ\FileBase\Plugin\Newtonsoft.Json.dll" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -281,6 +286,12 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.7f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Filebase">
+      <HintPath>Assets\GameDevHQ\FileBase\Plugin\Filebase.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\GameDevHQ\FileBase\Plugin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.7f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
