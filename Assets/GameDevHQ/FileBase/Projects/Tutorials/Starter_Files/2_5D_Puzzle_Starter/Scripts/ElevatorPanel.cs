@@ -8,6 +8,18 @@ public class ElevatorPanel : MonoBehaviour
     MeshRenderer _callButton;
     private int _requiredCoins = 8;
 
+    private Elevator _elevator;
+
+    private void Start()
+    {
+        _elevator = GameObject.Find("Elevator").GetComponent<Elevator>();
+
+        if (_elevator == null)
+        {
+            Debug.LogError("the elev is null");
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Player")
@@ -15,6 +27,8 @@ public class ElevatorPanel : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && (other.GetComponent<Player>().CoinCount() >= _requiredCoins))
             {
                 _callButton.material.color = Color.green;
+                _elevator.callElevator();
+                
             }
         }
     }
