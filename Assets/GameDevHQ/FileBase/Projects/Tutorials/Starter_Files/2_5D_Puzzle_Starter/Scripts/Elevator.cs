@@ -11,9 +11,7 @@ public class Elevator : MonoBehaviour
 
     public void callElevator()
     {
-        _goingDown = true;
-        //know current elevator pos
-
+        _goingDown = !_goingDown;
     }
 
     private void FixedUpdate()
@@ -21,6 +19,10 @@ public class Elevator : MonoBehaviour
         if (_goingDown == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
+        }
+        else if (_goingDown == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, origin.position, _speed * Time.deltaTime);
         }
     }
 

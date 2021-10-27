@@ -9,6 +9,8 @@ public class ElevatorPanel : MonoBehaviour
     private int _requiredCoins = 8;
 
     private Elevator _elevator;
+    private bool _elevatorCalled = false;
+
 
     private void Start()
     {
@@ -26,7 +28,18 @@ public class ElevatorPanel : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E) && (other.GetComponent<Player>().CoinCount() >= _requiredCoins))
             {
-                _callButton.material.color = Color.green;
+                if(_elevatorCalled == true)
+                {
+                    _callButton.material.color = Color.red;
+                    _elevatorCalled = false;
+                }
+                else
+                {
+                    _callButton.material.color = Color.green;
+                    _elevatorCalled = true;
+                }
+                
+
                 _elevator.callElevator();
                 
             }
