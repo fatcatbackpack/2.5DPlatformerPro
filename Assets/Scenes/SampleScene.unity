@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 658469780}
   - component: {fileID: 658469779}
   - component: {fileID: 658469782}
+  - component: {fileID: 658469783}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -977,6 +978,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 1020051241}
   target: {fileID: 41227029}
+--- !u!65 &658469783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658469777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.5640364, z: 1}
+  m_Center: {x: 0, y: 1.7820182, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
