@@ -20,6 +20,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private bool _canWallJump = false;
+
+    private Vector3 _direction, _velocity;
+
+    private Vector3 _wallSurfaceNormal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,11 +44,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 direction = new Vector3(horizontalInput, 0, 0);
-        Vector3 velocity = direction * _speed;
+        
 
         if (_controller.isGrounded == true)
         {
+            _canWallJump = false;
+            _direction = new Vector3(horizontalInput, 0, 0);
+            _velocity = _direction * _speed;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _yVelocity = _jumpHeight;
@@ -51,7 +59,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && _canWallJump == false)
             {
                 if (_canDoubleJump == true)
                 {
@@ -60,12 +68,31 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.Space) && _canWallJump == true)
+            {
+                _yVelocity = _jumpHeight;
+                _velocity = _wallSurfaceNormal * _speed;
+            }
+
             _yVelocity -= _gravity;
         }
 
-        velocity.y = _yVelocity;
+        _velocity.y = _yVelocity;
 
-        _controller.Move(velocity * Time.deltaTime);
+        _controller.Move(_velocity * Time.deltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if ((_controller.isGrounded == false) && (hit.transform.tag == "Wall"))
+        {
+            Debug.DrawRay(hit.point, hit.normal, Color.blue);
+            _wallSurfaceNormal = hit.normal;
+            _canWallJump = true;
+        }
+
+
+        
     }
 
     public void AddCoins()

@@ -26,7 +26,7 @@ public class ElevatorPanel : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.E) && (other.GetComponent<Player>().CoinCount() >= _requiredCoins))
+            if (Input.GetKeyDown(KeyCode.E) && (other.GetComponent<Player>().CoinCount() >= _requiredCoins))
             {
                 if(_elevatorCalled == true)
                 {
