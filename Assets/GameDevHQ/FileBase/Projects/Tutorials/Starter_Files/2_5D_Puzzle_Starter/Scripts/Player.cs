@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _jumpHeight = 15.0f;
     private float _yVelocity;
+    private float _pushPower = 2;
     private bool _canDoubleJump = false;
     [SerializeField]
     private int _coins;
@@ -84,6 +85,20 @@ public class Player : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        //check for MovingBox
+        if (hit.transform.tag == "MovingBox")
+        {
+            Rigidbody box = hit.collider.GetComponent<Rigidbody>();
+            if (box != null)
+            {
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, 0);
+
+                box.velocity = pushDirection * _pushPower;
+            }
+        }
+
+        
+
         if ((_controller.isGrounded == false) && (hit.transform.tag == "Wall"))
         {
             Debug.DrawRay(hit.point, hit.normal, Color.blue);
